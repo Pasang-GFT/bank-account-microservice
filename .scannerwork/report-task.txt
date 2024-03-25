@@ -3,5 +3,5 @@ projectKey=Pasang-GFT_bank-account-microservice
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.53510
 dashboardUrl=https://sonarcloud.io/dashboard?id=Pasang-GFT_bank-account-microservice
-ceTaskId=AY516Wnr4zVhl3kZLayP
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AY516Wnr4zVhl3kZLayP
+ceTaskId=AY518OBZLOdq6J14YwTI
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AY518OBZLOdq6J14YwTI
