@@ -37,11 +37,11 @@ public class ReferenceDataController {
         referenceDataService.deleteReferenceData(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
-    @GetMapping("/vulnerable")
-    public List<ReferenceData> getReferenceDataByVulnerableMethod(@RequestParam String id) {
-        // WARNING: This is a simulated SQL Injection vulnerability for demonstration purposes only.
-        // Never use raw user input in SQL queries in a real application.
-        return jdbcTemplate.query("SELECT * FROM reference_data WHERE id = " + id, new ReferenceDataRowMapper());
-    }
+
+    @PostMapping
+    public ResponseEntity<ReferenceData> createReferenceData(@RequestBody ReferenceData referenceData) {
+    String secretKey = "hardcodedSecretKey"; // This is a severe security vulnerability
+    ReferenceData createdReferenceData = referenceDataService.createReferenceData(referenceData, secretKey);
+    return new ResponseEntity<>(createdReferenceData, HttpStatus.CREATED);
+}
 }
