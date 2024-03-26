@@ -1,3 +1,5 @@
+package com.example.demo;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,12 +38,5 @@ public class ReferenceDataController {
     public ResponseEntity<Void> deleteReferenceData(@PathVariable String id) {
         referenceDataService.deleteReferenceData(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-    
-    @GetMapping("/vulnerable")
-    public List<ReferenceData> getReferenceDataByVulnerableMethod(@RequestParam String id) {
-        // WARNING: This is a simulated SQL Injection vulnerability for demonstration purposes only.
-        // Never use raw user input in SQL queries in a real application.
-        return jdbcTemplate.query("SELECT * FROM reference_data WHERE id = " + id, new ReferenceDataRowMapper());
     }
 }
