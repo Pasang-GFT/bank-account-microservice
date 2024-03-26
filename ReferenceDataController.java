@@ -1,3 +1,5 @@
+package com.example.reference;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class ReferenceDataController {
         return new ResponseEntity<>(updatedReferenceData, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ReferenceData> createReferenceData(@RequestBody ReferenceData referenceData) {
         ReferenceData createdReferenceData = referenceDataService.createReferenceData(referenceData);
         return new ResponseEntity<>(createdReferenceData, HttpStatus.CREATED);
@@ -37,11 +39,4 @@ public class ReferenceDataController {
         referenceDataService.deleteReferenceData(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @PostMapping
-    public ResponseEntity<ReferenceData> createReferenceData(@RequestBody ReferenceData referenceData) {
-    String secretKey = "hardcodedSecretKey"; // This is a severe security vulnerability
-    ReferenceData createdReferenceData = referenceDataService.createReferenceData(referenceData, secretKey);
-    return new ResponseEntity<>(createdReferenceData, HttpStatus.CREATED);
-}
 }
