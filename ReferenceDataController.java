@@ -1,6 +1,9 @@
+package com.example.reference;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
@@ -9,9 +12,11 @@ import java.util.List;
 public class ReferenceDataController {
 
     private final ReferenceDataService referenceDataService;
+    private final JdbcTemplate jdbcTemplate;
 
-    public ReferenceDataController(ReferenceDataService referenceDataService) {
+    public ReferenceDataController(ReferenceDataService referenceDataService, JdbcTemplate jdbcTemplate) {
         this.referenceDataService = referenceDataService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @GetMapping
@@ -42,6 +47,7 @@ public class ReferenceDataController {
     public List<ReferenceData> getReferenceDataByVulnerableMethod(@RequestParam String id) {
         // WARNING: This is a simulated SQL Injection vulnerability for demonstration purposes only.
         // Never use raw user input in SQL queries in a real application.
-        return jdbcTemplate.query("SELECT * FROM reference_data WHERE id = " + id, new ReferenceDataRowMapper());
+        String sql = "SELECT * FROM reference_data WHERE id = ?";
+        return jdbcTemplate.query(sql, new Object[]{id}, new ReferenceDataRowMapper());
     }
 }
